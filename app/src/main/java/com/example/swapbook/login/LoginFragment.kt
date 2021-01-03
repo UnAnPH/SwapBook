@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.example.swapbook.R
-import com.example.swapbook.databinding.FragmentLoginBinding
+import com.example.swapbook.databinding.LoginFragmentBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,8 +24,8 @@ class LoginFragment : Fragment() {
 
         override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
     savedInstanceState: Bundle?): View? {
-            val binding = DataBindingUtil.inflate<FragmentLoginBinding>(inflater,
-                R.layout.fragment_login,container,false)
+            val binding = DataBindingUtil.inflate<LoginFragmentBinding>(inflater,
+                R.layout.login_fragment,container,false)
             return binding.root
     }
 }
