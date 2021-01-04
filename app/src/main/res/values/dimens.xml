@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="paddingDefault">8dp</dimen>
+    <dimen name="homeSectionTitle">25sp</dimen>
+    <dimen name="vediTuttiSize">18sp</dimen>
+</resources>

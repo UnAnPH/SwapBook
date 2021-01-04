@@ -3,4 +3,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="login">Login</string>
+    <string name="ApplicationName">SwapBook</string>
+    <string name="libri_consigliati">Libri Consigliati</string>
+    <string name="libri_famosi">Libri Famosi</string>
+    <string name="vedi_tutti">Vedi Tutti..</string>
+    <string name="generi_consigliati">Generi consigliati</string>
 </resources>
