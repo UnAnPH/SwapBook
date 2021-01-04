@@ -18,7 +18,7 @@ class HomeFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val binding: LoginFragmentBinding = DataBindingUtil.inflate(
-            inflater, R.layout.login_fragment, container, false)
+            inflater, R.layout.home_fragment, container, false)
 
 
         return binding.root
