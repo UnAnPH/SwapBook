@@ -6,13 +6,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import com.example.swapbook.R
+import com.example.swapbook.databinding.ChatFragmentBinding
+import com.example.swapbook.databinding.SearchBarFragmentBinding
+import com.example.swapbook.insertion.InsertionViewModel
 
 class ChatFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = ChatFragment()
-    }
+    private lateinit var binding: ChatFragmentBinding
 
     private lateinit var viewModel: ChatViewModel
 
@@ -20,13 +22,16 @@ class ChatFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.chat_fragment, container, false)
+
+        binding = DataBindingUtil.inflate(
+                inflater, R.layout.chat_fragment, container, false)
+
+        viewModel = ViewModelProvider(this).get(ChatViewModel::class.java)
+
+        binding.chatViewModel= viewModel
+
+        return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(ChatViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
 
 }

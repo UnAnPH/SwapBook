@@ -6,26 +6,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
 import com.example.swapbook.R
 import com.example.swapbook.databinding.LoginFragmentBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [LoginFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class LoginFragment : Fragment() {
 
 
         override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-    savedInstanceState: Bundle?): View? {
-            val binding = DataBindingUtil.inflate<LoginFragmentBinding>(inflater,
+    savedInstanceState: Bundle?): View {
+
+            val binding: LoginFragmentBinding = DataBindingUtil.inflate(inflater,
                 R.layout.login_fragment,container,false)
+
+//            binding.loginButton.setOnClickListener {
+//                findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
+//            }
+
             return binding.root
     }
 }

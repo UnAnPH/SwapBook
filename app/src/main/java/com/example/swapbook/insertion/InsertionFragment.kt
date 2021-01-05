@@ -6,13 +6,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import com.example.swapbook.R
+import com.example.swapbook.databinding.InsertionFragmentBinding
+import com.example.swapbook.searchbar.SearchBarViewModel
 
 class InsertionFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = InsertionFragment()
-    }
+
+    private lateinit var binding: InsertionFragmentBinding
 
     private lateinit var viewModel: InsertionViewModel
 
@@ -20,13 +22,13 @@ class InsertionFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.insertion_fragment, container, false)
-    }
+        binding = DataBindingUtil.inflate(
+                inflater, R.layout.insertion_fragment, container, false)
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(InsertionViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
 
+        binding.insertionViewModel= viewModel
+
+    return binding.root
+    }
 }

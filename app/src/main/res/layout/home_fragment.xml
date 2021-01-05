@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.swapbook.home.HomeFragment">
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="homeViewModel"
+            type="com.example.swapbook.home.HomeViewModel" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/homeConstraint"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white">
+        android:background="@color/white"
+        tools:context="com.example.swapbook.home.HomeFragment">
 
 
         <androidx.core.widget.NestedScrollView
@@ -32,7 +38,6 @@
                         android:layout_height="50dp"
                         android:background="@drawable/ic_action_profile"
                         android:padding="@dimen/paddingDefault"
-                        android:paddingLeft="@dimen/paddingDefault"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -146,26 +151,5 @@
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottom_navigation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/bottom_bar_shape"
-            android:elevation="5dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:padding="5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:menu="@menu/bottom_nav"
-            tools:targetApi="lollipop">
-
-        </com.google.android.material.bottomnavigation.BottomNavigationView>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
