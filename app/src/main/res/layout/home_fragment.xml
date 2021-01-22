@@ -58,6 +58,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
@@ -72,16 +73,25 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recyclerView3"
-                        android:layout_width="match_parent"
-                        android:layout_height="125dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
+                    <TextView
+                        android:id="@+id/genre_carousel_home"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{homeViewModel.response}"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView5">
+                        app:layout_constraintTop_toBottomOf="@+id/textView5"
+                        tools:text="ciao" />
 
-                    </androidx.recyclerview.widget.RecyclerView>
+<!--                    <androidx.recyclerview.widget.RecyclerView-->
+<!--                        android:id="@+id/genre_carousel_home"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="125dp"-->
+<!--                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                        app:layout_constraintHorizontal_bias="0.0"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toBottomOf="@+id/textView5">-->
+
+<!--                    </androidx.recyclerview.widget.RecyclerView>-->
 
                     <TextView
                         android:id="@+id/textView7"
@@ -92,25 +102,14 @@
                         android:textAllCaps="false"
                         android:textSize="@dimen/homeSectionTitle"
                         android:textStyle="bold"
-                        app:layout_constraintEnd_toStartOf="@+id/textView8"
-                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/recyclerView3" />
-
-                    <TextView
-                        android:id="@+id/textView8"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/vedi_tutti"
-                        android:textSize="@dimen/vediTuttiSize"
-                        app:layout_constraintBottom_toTopOf="@+id/recyclerView2"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/recyclerView3" />
+                        app:layout_constraintTop_toBottomOf="@+id/genre_carousel_home" />
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recyclerView2"
+                        android:id="@+id/book_carousel_home1"
                         android:layout_width="match_parent"
                         android:layout_height="225dp"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
@@ -127,7 +126,7 @@
                         app:layout_constraintEnd_toStartOf="@+id/textView11"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/recyclerView2" />
+                        app:layout_constraintTop_toBottomOf="@+id/book_carousel_home1" />
 
                     <TextView
                         android:id="@+id/textView11"
@@ -137,7 +136,7 @@
                         android:textSize="@dimen/vediTuttiSize"
                         app:layout_constraintBottom_toTopOf="@+id/recyclerView4"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/recyclerView2" />
+                        app:layout_constraintTop_toBottomOf="@+id/book_carousel_home1" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recyclerView4"
@@ -146,6 +145,17 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+                    <Button
+                        android:id="@+id/button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Button"
+                        app:layout_constraintBottom_toTopOf="@+id/book_carousel_home1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.9"
+                        app:layout_constraintStart_toEndOf="@+id/textView7"
+                        app:layout_constraintTop_toBottomOf="@+id/genre_carousel_home" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

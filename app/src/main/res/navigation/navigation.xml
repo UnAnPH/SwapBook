@@ -70,7 +70,7 @@
     </fragment>
     <fragment
         android:id="@+id/bookDetail"
-        android:name="com.example.swapbook.bookdetail.BookDetail"
+        android:name="com.example.swapbook.bookdetail.BookDetailFragment"
         android:label="book_detail_fragment"
         tools:layout="@layout/book_detail_fragment" >
         <action
@@ -93,20 +93,12 @@
             app:destination="@id/homeFragment" />
     </fragment>
     <fragment
-        android:id="@+id/bookDisplayFragment"
-        android:name="com.example.swapbook.bookdisplay.filter.BookDisplayFragment"
-        android:label="book_display_fragment"
-        tools:layout="@layout/book_display_fragment" >
-        <action
-            android:id="@+id/action_bookDisplayFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-        <action
-            android:id="@+id/action_bookDisplayFragment_to_bookDetail"
-            app:destination="@id/bookDetail" />
-    </fragment>
-    <fragment
         android:id="@+id/clientDisplayFragment"
         android:name="com.example.swapbook.client.ClientDisplayFragment"
         android:label="client_display_fragment"
         tools:layout="@layout/client_display_fragment" />
+    <fragment
+        android:id="@+id/bookDisplayFragment"
+        android:name="com.example.swapbook.bookdisplay.BookDisplayFragment"
+        android:label="BookDisplayFragment" />
 </navigation>

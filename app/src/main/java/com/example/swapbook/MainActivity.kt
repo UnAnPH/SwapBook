@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import com.example.swapbook.activities.ActivitiesFragment
+import com.example.swapbook.bookdisplay.BookDisplayFragment
 import com.example.swapbook.chat.ChatFragment
 import com.example.swapbook.home.HomeFragment
 import com.example.swapbook.home.HomeFragmentDirections
@@ -40,9 +41,10 @@ class MainActivity : AppCompatActivity() {
             }
             true
             }
+
         }
 
-    private fun makeCurrentFragment(fragment: Fragment) {
+    fun makeCurrentFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction().apply {
         replace(R.id.fl_wrapper, fragment)
         commit()

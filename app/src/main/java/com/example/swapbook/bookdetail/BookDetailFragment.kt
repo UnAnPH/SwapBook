@@ -1,4 +1,4 @@
-package com.example.swapbook.bookdisplay.filter
+package com.example.swapbook.bookdetail
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -8,24 +8,24 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.swapbook.R
 
-class BookDisplayFragment : Fragment() {
+class BookDetailFragment : Fragment() {
 
     companion object {
-        fun newInstance() = BookDisplayFragment()
+        fun newInstance() = BookDetailFragment()
     }
 
-    private lateinit var viewModel: BookDisplayViewModel
+    private lateinit var viewModel: BookDetailViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.book_display_fragment, container, false)
+        return inflater.inflate(R.layout.book_detail_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(BookDisplayViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(BookDetailViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

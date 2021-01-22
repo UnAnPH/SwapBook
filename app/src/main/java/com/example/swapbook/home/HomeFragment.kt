@@ -7,28 +7,52 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.fragment.findNavController
 import com.example.swapbook.R
 import com.example.swapbook.databinding.HomeFragmentBinding
-import com.example.swapbook.databinding.LoginFragmentBinding
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.NavHostFragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import androidx.recyclerview.widget.GridLayoutManager
+import com.example.swapbook.MainActivity
+import com.example.swapbook.bookdisplay.BookDisplayFragment
+import com.example.swapbook.database.BookDatabase
+
 
 class HomeFragment : Fragment() {
 
-    private lateinit var binding: HomeFragmentBinding
-
-    private lateinit var viewModel: HomeViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        binding= DataBindingUtil.inflate(
+        val binding: HomeFragmentBinding = DataBindingUtil.inflate(
             inflater, R.layout.home_fragment, container, false)
 
-        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+        val application = requireNotNull(this.activity).application
 
-        binding.homeViewModel= viewModel
+        // Create an instance of the ViewModel Factory.
+        val dataSource = BookDatabase.getInstance(application).bookDatabaseDao
+        val viewModelFactory = HomeViewModelFactory(dataSource, application)
+
+        val homeViewModel =
+            ViewModelProvider(
+                this, viewModelFactory).get(HomeViewModel::class.java)
+
+        binding.homeViewModel= homeViewModel
+
+        binding.lifecycleOwner = this
+
+//        val adapter = BookDisplayAdapter()
+
+//        binding.bookCarouselHome1.adapter=adapter
+//
+//        homeViewModel.books.observe(viewLifecycleOwner, Observer {
+//            it?.let {
+//                adapter.submitList(it)
+//            }
+//        })
+
+        binding.setLifecycleOwner(this)
+
+        binding.button.setOnClickListener {
+            (activity as MainActivity).makeCurrentFragment(BookDisplayFragment())
+        }
 
 //        binding.bottomNavigation.setOnNavigationItemSelectedListener { item ->
 //            when(item.itemId) {
@@ -36,25 +60,11 @@ class HomeFragment : Fragment() {
 //                    findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSearchBarFragment())
 //                    true
 //                }
-//                R.id.add -> {
-//                    findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToInsertionFragment())
-//                    true
-//                }
-//                R.id.chat -> {
-//                    findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToChatFragment())
-//                    true
-//                }
-//                R.id.activities -> {
-//                    findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToActivitiesFragment())
-//                    true
-//                }
-//                else -> false
-//            }
-
-//        }
 
 
+        val manager = GridLayoutManager(activity, 3, GridLayoutManager.HORIZONTAL, false)
 
+        binding.bookCarouselHome1.layoutManager= manager
 
         return binding.root
     }
