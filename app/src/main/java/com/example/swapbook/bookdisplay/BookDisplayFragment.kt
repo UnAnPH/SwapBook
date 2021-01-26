@@ -7,7 +7,9 @@ import androidx.fragment.app.Fragment
 import com.example.swapbook.R
 import com.example.swapbook.client.ClientDisplayFragment
 import com.example.swapbook.databinding.BookDisplayFragmentBinding
-import com.example.swapbook.helpers.PhotoGridAdapter
+import com.example.swapbook.databinding.GridViewItemBinding
+
+
 
 class BookDisplayFragment : Fragment() {
 
@@ -19,14 +21,17 @@ class BookDisplayFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         val binding = BookDisplayFragmentBinding.inflate(inflater)
 
+
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
-        binding.lifecycleOwner = this
+//        binding.lifecycleOwner = this
+        binding.setLifecycleOwner(this)
 
         // Giving the binding access to the OverviewViewModel
         binding.viewModel = viewModel
 
-        // Sets the adapter of the photosGrid RecyclerView
         binding.photosGrid.adapter = PhotoGridAdapter()
+
+
 
         setHasOptionsMenu(true)
         return binding.root

@@ -1,37 +1,29 @@
 package com.example.swapbook.bookdisplay
 
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.swapbook.MainActivity
 import com.example.swapbook.network.MarsProperty
+import com.example.swapbook.network.Post
 import com.example.swapbook.network.SwapBookApi
-import com.example.swapbook.network.SwapBookApi.retrofitService
-import com.example.swapbook.network.SwapBookApiService
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 enum class MarsApiStatus { LOADING, ERROR, DONE }
 
 class BookDisplayViewModel : ViewModel() {
 
-    private val _status = MutableLiveData<MarsApiStatus>()
+    // The internal MutableLiveData String that stores the most recent response
+    private val _response = MutableLiveData<String>()
 
-    val status: LiveData<MarsApiStatus>
-        get() = _status
+    // The external immutable LiveData for the response String
+    val response: LiveData<String>
+        get() = _response
 
-    private val _property = MutableLiveData<MarsProperty>()
+    private val _posts = MutableLiveData<List<Post>>()
 
-    val property: LiveData<MarsProperty>
-        get() = _property
-
-    private val _properties = MutableLiveData<List<MarsProperty>>()
-    val properties: LiveData<List<MarsProperty>>
-        get() = _properties
+    val posts: LiveData<List<Post>>
+        get() = _posts
 
     /**
      * Call getMarsRealEstateProperties() on init so we can display status immediately.
@@ -45,13 +37,11 @@ class BookDisplayViewModel : ViewModel() {
      */
     private fun getMarsRealEstateProperties() {
         viewModelScope.launch {
-            _status.value = MarsApiStatus.LOADING
             try {
-                _properties.value = SwapBookApi.retrofitService.getProperties()
-                _status.value = MarsApiStatus.DONE
+                _posts.value = SwapBookApi.retrofitService.retrieve()
+                _response.value = "Success: Mars properties retrieved"
             } catch (e: Exception) {
-                _status.value = MarsApiStatus.ERROR
-                _properties.value = ArrayList()
+                _response.value = "Failure: ${e.message}"
             }
         }
     }

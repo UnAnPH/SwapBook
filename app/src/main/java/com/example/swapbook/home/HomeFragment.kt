@@ -62,9 +62,9 @@ class HomeFragment : Fragment() {
 //                }
 
 
-        val manager = GridLayoutManager(activity, 3, GridLayoutManager.HORIZONTAL, false)
-
-        binding.bookCarouselHome1.layoutManager= manager
+//        val manager = GridLayoutManager(activity, 3, GridLayoutManager.HORIZONTAL, false)
+//
+//        binding.bookCarouselHome1.layoutManager= manager
 
         return binding.root
     }

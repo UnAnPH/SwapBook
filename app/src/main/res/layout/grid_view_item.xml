@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="property"
-            type="com.example.swapbook.network.MarsProperty" />
+            name="post"
+            type="com.example.swapbook.network.Post" />
     </data>
 
     <ImageView
@@ -17,5 +17,6 @@
         android:adjustViewBounds="true"
         android:padding="2dp"
         tools:src="@tools:sample/backgrounds/scenic"
-        app:imageUrl="@{property.imgSrcUrl}"/>
+        app:imageUrl="@{post.imgSrcUrl}"/>
+
 </layout>

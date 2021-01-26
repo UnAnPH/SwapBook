@@ -9,7 +9,9 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.swapbook.R
 import com.example.swapbook.bookdisplay.MarsApiStatus
+import com.example.swapbook.bookdisplay.PhotoGridAdapter
 import com.example.swapbook.network.MarsProperty
+import com.example.swapbook.network.Post
 
 @BindingAdapter("imageUrl")
 fun bindImage(imgView: ImageView, imgUrl: String?) {
@@ -26,12 +28,12 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
     }
 }
 
-@BindingAdapter("listData")
-fun bindRecyclerView(recyclerView: RecyclerView,
-                     data: List<MarsProperty>?) {
-    val adapter = recyclerView.adapter as PhotoGridAdapter
-    adapter.submitList(data)
-}
+//@BindingAdapter("listData")
+//fun bindRecyclerView(recyclerView: RecyclerView,
+//                     data: List<MarsProperty>?) {
+//    val adapter = recyclerView.adapter as PhotoGridAdapter
+//    adapter.submitList(data)
+//}
 
 @BindingAdapter("marsApiStatus")
 fun bindStatus(statusImageView: ImageView,
@@ -49,4 +51,11 @@ fun bindStatus(statusImageView: ImageView,
             statusImageView.visibility = View.GONE
         }
     }
+}
+
+@BindingAdapter("listData")
+fun bindRecyclerView(recyclerView: RecyclerView,
+                     data: List<Post>?) {
+    val adapter = recyclerView.adapter as PhotoGridAdapter
+    adapter.submitList(data)
 }
