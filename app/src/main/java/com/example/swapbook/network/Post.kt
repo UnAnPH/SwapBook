@@ -1,28 +1,36 @@
 package com.example.swapbook.network
 
 
+import android.os.Parcelable
 import com.squareup.moshi.Json
+import kotlinx.android.parcel.Parcelize
 import java.util.*
 
+@Parcelize
 data class Post(
 
         val ID_post: String,
-//        val publishing_date: Date,
-//        val closing_date: Date,
-//        val description: String,
+        val publishing_date: String,
+//      val closing_date: String,
+        val description: String,
         @Json(name = "img_src") val imgSrcUrl: String,
-//        val city: String,
-//        val price: Double,
-//
-//        //book
-//        val author: String,
-//        val title: String,
-//        val publishing_house: String,
-//        val physical_desc: String,
-//        val publishing_year: Date,
-//        val condition: String,
-//        val lenght: Double,
-//        val height: Double,
-//        val width: Double,
-//        val genre: String,
-)
+        val city: String,
+        val price: Float,
+        val state: Int,
+
+        //book
+        val author: String,
+        val title: String,
+        val publishing_house: String,
+        val physical_desc: String,
+        val publishing_year: String,
+        val condition: String,
+        val lenght: Float,
+        val height: Float,
+        val width: Float,
+        val genre_desc: String,
+
+        //user
+        val name: String,
+        val surname: String
+): Parcelable {}

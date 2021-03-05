@@ -8,57 +8,66 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.swapbook.database.BookDatabaseDao
 import com.example.swapbook.database.BookDetail
+import com.example.swapbook.network.Post
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import com.example.swapbook.network.SwapBookApi
 
+enum class MarsApiStatus { LOADING, ERROR, DONE }
+
 class HomeViewModel(
     dataSource: BookDatabaseDao,
     application: Application
 ) : ViewModel() {
 
-    val database = dataSource
+    // The internal MutableLiveData that stores the status of the most recent request
+    private val _status = MutableLiveData<MarsApiStatus>()
 
-    val books = database.getAllBooks()
+    // The external immutable LiveData for the request status
+    val status: LiveData<MarsApiStatus>
+        get() = _status
 
-    // The internal MutableLiveData String that stores the most recent response
-    private val _response = MutableLiveData<String>()
+    private val _posts = MutableLiveData<List<Post>>()
 
-    // The external immutable LiveData for the response String
-    val response: LiveData<String>
-        get() = _response
+    val posts: LiveData<List<Post>>
+        get() = _posts
 
+    private val _navigateToSelectedPost = MutableLiveData<Post>()
+    val navigateToSelectedPost: LiveData<Post>
+        get() = _navigateToSelectedPost
 
+    /**
+     * Call getMarsRealEstateProperties() on init so we can display status immediately.
+     */
     init {
-        initializeAll()
-//        getSwapBookProperties()
+        getMarsRealEstateProperties()
     }
 
-    private fun getSwapBookProperties() {
-
-//        SwapBookApi.retrofitService.getProperties().enqueue(
-//                object: Callback<String> {
-//                    override fun onResponse(call: Call<String>,
-//                                            response: Response<String>) {
-//                        _response.value = response.body()
-//                    }
-//
-//                    override fun onFailure(call: Call<String>, t: Throwable) {
-//                        _response.value = "Failure: " + t.message
-//                    }
-//                })
-
-    }
-
-    private fun initializeAll() {
+    /**
+     * Sets the value of the status LiveData to the Mars API status.
+     */
+    private fun getMarsRealEstateProperties() {
         viewModelScope.launch {
+            _status.value = MarsApiStatus.LOADING
+            try {
+                _posts.value = SwapBookApi.retrofitService.retrieve()
+                _status.value = MarsApiStatus.DONE
+            } catch (e: Exception) {
+                _status.value = MarsApiStatus.ERROR
+                _posts.value = ArrayList()
+            }
         }
-
     }
 
-    private suspend fun insert(book: BookDetail) {
-        database.insert(book)
+    fun displayPostDetails(post: Post) {
+        _navigateToSelectedPost.value = post
     }
+
+    fun displayPostDetailsComplete() {
+        _navigateToSelectedPost.value = null
+    }
+
+
 }

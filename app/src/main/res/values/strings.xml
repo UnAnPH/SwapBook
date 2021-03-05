@@ -9,4 +9,13 @@
     <string name="vedi_tutti">Vedi Tutti..</string>
     <string name="generi_consigliati">Generi consigliati</string>
     <string name="chat">Chat</string>
+
+    <array name="genres">
+        <item>Giallo</item>
+        <item>Fantascienza</item>
+        <item>Rosa</item>
+        <item>Scolastico</item>
+        <item>Fantasy</item>
+        <item>Autobiografico</item>
+    </array>
 </resources>

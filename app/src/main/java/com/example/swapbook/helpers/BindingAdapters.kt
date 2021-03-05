@@ -8,9 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.swapbook.R
-import com.example.swapbook.bookdisplay.MarsApiStatus
-import com.example.swapbook.bookdisplay.PhotoGridAdapter
-import com.example.swapbook.network.MarsProperty
+import com.example.swapbook.home.MarsApiStatus
+import com.example.swapbook.home.PhotoGridAdapter
 import com.example.swapbook.network.Post
 
 @BindingAdapter("imageUrl")

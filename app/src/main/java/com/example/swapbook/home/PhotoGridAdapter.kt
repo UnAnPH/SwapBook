@@ -15,7 +15,7 @@
  *
  */
 
-package com.example.swapbook.bookdisplay
+package com.example.swapbook.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -23,11 +23,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.swapbook.databinding.GridViewItemBinding
-import com.example.swapbook.network.MarsProperty
 import com.example.swapbook.network.Post
 
 
-class PhotoGridAdapter : ListAdapter<Post,
+class PhotoGridAdapter( private val onClickListener: OnClickListener) : ListAdapter<Post,
         PhotoGridAdapter.PostViewHolder>(DiffCallback) {
 
     class PostViewHolder(private var binding:
@@ -42,13 +41,16 @@ class PhotoGridAdapter : ListAdapter<Post,
     }
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoGridAdapter.PostViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         return PostViewHolder(GridViewItemBinding.inflate(
             LayoutInflater.from(parent.context)))
     }
 
-    override fun onBindViewHolder(holder: PhotoGridAdapter.PostViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
         val post = getItem(position)
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(post)
+        }
         holder.bind(post)
     }
 
@@ -61,6 +63,10 @@ class PhotoGridAdapter : ListAdapter<Post,
             return oldItem.ID_post == newItem.ID_post
         }
 
+    }
+
+    class OnClickListener(val clickListener: (post: Post) -> Unit) {
+        fun onClick(post:Post) = clickListener(post)
     }
 
 }

@@ -10,9 +10,9 @@ import androidx.databinding.DataBindingUtil
 import com.example.swapbook.R
 import com.example.swapbook.databinding.HomeFragmentBinding
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import com.example.swapbook.MainActivity
-import com.example.swapbook.bookdisplay.BookDisplayFragment
 import com.example.swapbook.database.BookDatabase
 
 
@@ -38,34 +38,25 @@ class HomeFragment : Fragment() {
 
         binding.lifecycleOwner = this
 
-//        val adapter = BookDisplayAdapter()
-
-//        binding.bookCarouselHome1.adapter=adapter
-//
-//        homeViewModel.books.observe(viewLifecycleOwner, Observer {
-//            it?.let {
-//                adapter.submitList(it)
-//            }
-//        })
+        val navHostFragment =
+                getActivity()?.getSupportFragmentManager()?.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
 
         binding.setLifecycleOwner(this)
 
-        binding.button.setOnClickListener {
-            (activity as MainActivity).makeCurrentFragment(BookDisplayFragment())
-        }
+        binding.photosGrid.adapter = PhotoGridAdapter(PhotoGridAdapter.OnClickListener {
+            homeViewModel.displayPostDetails(it)
+        })
 
-//        binding.bottomNavigation.setOnNavigationItemSelectedListener { item ->
-//            when(item.itemId) {
-//                R.id.search_bar -> {
-//                    findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSearchBarFragment())
-//                    true
-//                }
+        homeViewModel.navigateToSelectedPost.observe(viewLifecycleOwner, Observer {
+            if ( null != it ) {
+                this.findNavController().navigate(
+                        HomeFragmentDirections.actionHomeFragmentToBookDetailFragment(it))
+                homeViewModel.displayPostDetailsComplete()
+            }
+        })
 
-
-//        val manager = GridLayoutManager(activity, 3, GridLayoutManager.HORIZONTAL, false)
-//
-//        binding.bookCarouselHome1.layoutManager= manager
-
+        setHasOptionsMenu(true)
         return binding.root
     }
 
