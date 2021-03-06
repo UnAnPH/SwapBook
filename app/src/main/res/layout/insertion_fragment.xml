@@ -111,10 +111,24 @@
                 android:layout_marginEnd="8dp"
                 android:ems="10"
                 android:hint="Enter Publishing House"
-                android:inputType="number"
+                android:inputType="text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextPublishingYear" />.
+
+            <EditText
+                android:id="@+id/editTextPhysicalDesc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:ems="10"
+                android:hint="Enter Physical Description"
+                android:inputType="text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextPublishingHouse" />.
 
             <EditText
                 android:id="@+id/editTextCondition"
@@ -128,7 +142,7 @@
                 android:inputType="text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextPublishingHouse" />
+                app:layout_constraintTop_toBottomOf="@+id/editTextPhysicalDesc" />
 
             <EditText
                 android:id="@+id/editTextLenght"
@@ -153,7 +167,7 @@
                 android:layout_marginEnd="8dp"
                 android:ems="10"
                 android:hint="Enter Height"
-                android:inputType="text"
+                android:inputType="numberDecimal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextLenght" />
@@ -167,7 +181,7 @@
                 android:layout_marginEnd="8dp"
                 android:ems="10"
                 android:hint="Enter Width"
-                android:inputType="text"
+                android:inputType="numberDecimal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextHeight" />

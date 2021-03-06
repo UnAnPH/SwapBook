@@ -42,6 +42,7 @@ suspend fun retrieve(): List<Post>
         @Field("description") description: String?,
         @Field("publishingYear") publishingYear: String?,
         @Field("publishingHouse") publishingHouse: String?,
+        @Field("physicalDescription") physicalDescription: String?,
         @Field("condition") condition: String?,
         @Field("lenght") lenght: String?,
         @Field("height") height: String?,

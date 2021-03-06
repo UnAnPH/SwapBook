@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.compose.ui.viewinterop.viewModel
 import androidx.lifecycle.*
 import com.example.swapbook.MainActivity
+import com.example.swapbook.R
 import com.example.swapbook.databinding.InsertionFragmentBinding
 import com.example.swapbook.helpers.Utils
 import com.example.swapbook.home.MarsApiStatus
@@ -39,6 +40,7 @@ class InsertionViewModel(application: Application): ViewModel(){
         val description = binding.editMultiLineDescription.text.toString()
         val publishingYear = binding.editTextPublishingYear.text.toString()
         val publishingHouse = binding.editTextPublishingHouse.text.toString()
+        val physicalDescription = binding.editTextPhysicalDesc.text.toString()
         val condition = binding.editTextCondition.text.toString()
         val lenght = binding.editTextLenght.text.toString()
         val height = binding.editTextHeight.text.toString()
@@ -51,7 +53,7 @@ class InsertionViewModel(application: Application): ViewModel(){
         val insertData: Call<ResponseModel?>? = SwapBookApi.retrofitService.insertData(
                     "INSERT", bookTitle,
                     authorName, genre,
-                    description, publishingYear, publishingHouse,condition,
+                    description, publishingYear, publishingHouse,physicalDescription,condition,
                     lenght,height,width,city,province,price)
 
         insertData!!.enqueue(object : Callback<ResponseModel?> {

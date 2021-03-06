@@ -2,27 +2,27 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/home"
+        android:id="@+id/homeFragment"
         android:title="Home"
         android:icon="@drawable/ic_action_home"
         />
     <item
-        android:id="@+id/search_bar"
+        android:id="@+id/searchBarFragment"
         android:title="SearchBar"
         android:icon="@drawable/ic_action_search_bar"
         />
     <item
-        android:id="@+id/add"
+        android:id="@+id/insertionFragment"
         android:title="Add"
         android:icon="@drawable/ic_action_add"
         />
     <item
-        android:id="@+id/chat"
+        android:id="@+id/chatFragment"
         android:title="Chat"
         android:icon="@drawable/ic_action_chat"
         />
     <item
-        android:id="@+id/activities"
+        android:id="@+id/activitiesFragment"
         android:title="Activities"
         android:icon="@drawable/ic_action_activities"
         />
