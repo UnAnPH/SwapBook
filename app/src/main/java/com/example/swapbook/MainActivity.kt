@@ -2,6 +2,7 @@ package com.example.swapbook
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.fragment.app.Fragment
@@ -80,6 +81,16 @@ class MainActivity : AppCompatActivity() {
                 R.id.activitiesFragment,
                 R.id.insertionFragment))
         setupActionBarWithNavController(navHostFragment.navController, appBarConfiguration)
+    }
+
+    fun showBottomNavigation()
+    {
+        bottom_navigation.visibility = View.VISIBLE
+    }
+
+    fun hideBottomNavigation()
+    {
+        bottom_navigation.visibility = View.GONE
     }
 
 

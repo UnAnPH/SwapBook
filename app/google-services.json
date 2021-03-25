@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "487854412490",
+    "project_id": "swapbook-1693c",
+    "storage_bucket": "swapbook-1693c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:487854412490:android:4a6f932178bd88027d9a33",
+        "android_client_info": {
+          "package_name": "com.example.swapbook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "487854412490-ur7ghlnk190ntcnv51o11hrtkjp37dkj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFVqK3s2YgNum2U8E7_fShif4OFN1S930"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "487854412490-ur7ghlnk190ntcnv51o11hrtkjp37dkj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

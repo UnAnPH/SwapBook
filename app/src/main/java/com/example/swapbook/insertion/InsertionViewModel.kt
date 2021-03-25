@@ -87,10 +87,5 @@ class InsertionViewModel(application: Application): ViewModel(){
             }
         })
 
-
-
-        Log.i("city",city)
-        Log.i("province",province)
-
     }
 }
