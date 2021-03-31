@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -77,15 +76,15 @@ class RegistrationActivity : AppCompatActivity() {
 
                     databaseReference.setValue(hashMap).addOnCompleteListener(this){
                         if (it.isSuccessful){
-                            //open home activity
-//                            etName.setText("")
-//                            etEmail.setText("")
-//                            etPassword.setText("")
-//                            etConfirmPassword.setText("")
+//                            open home activity
+                            etName.setText("")
+                            etEmail.setText("")
+                            etPassword.setText("")
+                            etConfirmPassword.setText("")
                             val intent = Intent(this@RegistrationActivity,
                                 MainActivity::class.java)
                             startActivity(intent)
-//                            finish()
+                            finish()
                         }
                     }
                 }else{

@@ -1,5 +1,6 @@
 package com.example.swapbook
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -34,38 +35,41 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        setupViews()
+//        setupViews()
+        bottom_navigation.setOnNavigationItemSelectedListener {
+                item ->
+            when(item.itemId) {
+                R.id.homeFragment -> {
+                    val intent = Intent(this,MainActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.searchBarFragment -> {
+//                    val intent = Intent(this,HomeFragment::class.java)
+//                    startActivity(intent)
+                    true
+                }
+                R.id.insertionFragment -> {
+//                    val intent = Intent(this,HomeFragment::class.java)
+//                    startActivity(intent)
+                    true
+                }
+                R.id.chatFragment -> {
+                    val intent = Intent(this,UsersListActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.activitiesFragment -> {
+//                    val intent = Intent(this,HomeFragment::class.java)
+//                    startActivity(intent)
+                    true
+                }
+                else -> false
+            }
+        }
+
 
     }
-
-//        val homeFragment= HomeFragment()
-//        val searchBarFragment= SearchBarFragment()
-//        val addFragment= InsertionFragment()
-//        val chatFragment= ChatFragment()
-//        val activitiesFragment= ActivitiesFragment()
-//
-//        makeCurrentFragment(homeFragment)
-//
-//        bottom_navigation.setOnNavigationItemSelectedListener {
-//            when(it.itemId){
-//                R.id.home-> makeCurrentFragment(homeFragment)
-//                R.id.search_bar-> makeCurrentFragment(searchBarFragment)
-//                R.id.add-> makeCurrentFragment(addFragment)
-//                R.id.chat-> makeCurrentFragment(chatFragment)
-//                R.id.activities-> makeCurrentFragment(activitiesFragment)
-//            }
-//            true
-//            }
-//
-//        }
-//
-//    fun makeCurrentFragment(fragment: Fragment) {
-//        supportFragmentManager.beginTransaction().apply {
-//        replace(R.id.fl_wrapper, fragment)
-//        commit()
-//    }
-//
-
 
 
     fun setupViews()

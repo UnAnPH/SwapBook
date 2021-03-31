@@ -61,6 +61,7 @@ class InsertionViewModel(application: Application): ViewModel(){
                     call: Call<ResponseModel?>?,
                     response: Response<ResponseModel?>?
             ) {
+
                 var myResponseCode = ""
                 if (response?.body() != null) {
                     myResponseCode = response.body()!!.code!!

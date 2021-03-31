@@ -45,6 +45,7 @@ class InsertionFragment : Fragment() {
 
         binding.buttonAddPost.setOnClickListener {
             insertionViewModel.addPost(binding)
+
         }
 
     return binding.root
