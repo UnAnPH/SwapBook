@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -59,36 +60,37 @@ class RegistrationActivity : AppCompatActivity() {
 
     }
 
-    private fun registerUser(userName:String,email:String,password:String){
+    private fun registerUser(userName:String,email:String,password:String) {
 
-        auth.createUserWithEmailAndPassword(email,password)
-            .addOnCompleteListener(this){
-                if (it.isSuccessful){
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) {
+                if (it.isSuccessful) {
                     val user: FirebaseUser? = auth.currentUser
-                    val userId:String = user!!.uid
+                    val userId: String = user!!.uid
 
-                    databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(userId)
+                    databaseReference =
+                        FirebaseDatabase.getInstance().getReference("Users").child(userId)
+                    Log.i("msg:", databaseReference.toString())
+                    val hashMap: HashMap<String, String> = HashMap()
+                    hashMap.put("userId", userId)
+                    hashMap.put("userName", userName)
+                    hashMap.put("profileImage", "")
 
-                    val hashMap:HashMap<String,String> = HashMap()
-                    hashMap.put("userId",userId)
-                    hashMap.put("userName",userName)
-                    hashMap.put("profileImage","")
-
-                    databaseReference.setValue(hashMap).addOnCompleteListener(this){
-                        if (it.isSuccessful){
+                    databaseReference.setValue(hashMap).addOnCompleteListener(this) {
+                        if (it.isSuccessful) {
 //                            open home activity
                             etName.setText("")
                             etEmail.setText("")
                             etPassword.setText("")
                             etConfirmPassword.setText("")
-                            val intent = Intent(this@RegistrationActivity,
-                                MainActivity::class.java)
+                            val intent = Intent(
+                                this@RegistrationActivity,
+                                MainActivity::class.java
+                            )
                             startActivity(intent)
                             finish()
                         }
                     }
-                }else{
-
                 }
             }
     }

@@ -12,14 +12,14 @@ import kotlinx.android.synthetic.main.activity_login.*
 
 
 class LoginActivity : AppCompatActivity() {
-    private lateinit var auth: FirebaseAuth
-    private  lateinit var firebaseUser: FirebaseUser
+    private var auth: FirebaseAuth? = null
+    private  var firebaseUser: FirebaseUser? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
         auth = FirebaseAuth.getInstance()
-        firebaseUser = auth!!.currentUser!!
+        //firebaseUser = auth!!.currentUser!!
 
         //check if user login then navigate to user screen
         if (firebaseUser != null) {
@@ -32,9 +32,9 @@ class LoginActivity : AppCompatActivity() {
         }
 
         btnLogin.setOnClickListener {
-
             val email = etEmail.text.toString()
             val password = etPassword.text.toString()
+
             if (TextUtils.isEmpty(email) && TextUtils.isEmpty(password)) {
                 Toast.makeText(
                     applicationContext,
@@ -42,26 +42,18 @@ class LoginActivity : AppCompatActivity() {
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
-                Log.i( "msg:","ciao2"
-                )
                 auth!!.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this) {
-                        Log.i( "msg:","ciao1"
-                        )
                         if (it.isSuccessful) {
-                            Log.i( "msg:","ciao123"
-                            )
                             etEmail.setText("")
                             etPassword.setText("")
                             val intent = Intent(
                                 this@LoginActivity,
-                                UsersListActivity::class.java
+                                MainActivity::class.java
                             )
                             startActivity(intent)
                             finish()
                         } else {
-                            Log.i( "msg:","ciao1234"
-                            )
                             Toast.makeText(
                                 applicationContext,
                                 "email or password invalid",
