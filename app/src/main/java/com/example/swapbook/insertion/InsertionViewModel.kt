@@ -29,10 +29,6 @@ class InsertionViewModel(application: Application): ViewModel(){
     val newPost: LiveData<Post>
         get() = _newPost
 
-    init {
-    }
-
-
     fun addPost(binding: InsertionFragmentBinding){
         val bookTitle = binding.editTextBookTitle.text.toString()
         val authorName = binding.editTextAuthorName.text.toString()
@@ -52,9 +48,11 @@ class InsertionViewModel(application: Application): ViewModel(){
 
         val insertData: Call<ResponseModel?>? = SwapBookApi.retrofitService.insertData(
                     "INSERT", bookTitle,
-                    authorName, genre,
+                    authorName,
+            genre,
                     description, publishingYear, publishingHouse,physicalDescription,condition,
-                    lenght,height,width,city,province,price)
+                    lenght,height,width,city,province,price
+        )
 
         insertData!!.enqueue(object : Callback<ResponseModel?> {
             override fun onResponse(
@@ -84,7 +82,6 @@ class InsertionViewModel(application: Application): ViewModel(){
 
             override fun onFailure(call: Call<ResponseModel?>?, t: Throwable) {
                 Log.i( "msg:", "FAILURE FAILURE THROWN DURING INSERT." + " ERROR Message: " + t.message)
-
             }
         })
 

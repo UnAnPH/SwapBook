@@ -11,52 +11,10 @@
         android:label="home_fragment"
         tools:layout="@layout/home_fragment" >
         <action
-            android:id="@+id/action_homeFragment_to_chatFragment"
-            app:destination="@id/chatFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_activitiesFragment"
-            app:destination="@id/activitiesFragment" />
-        <action
             android:id="@+id/action_homeFragment_to_insertionFragment"
             app:destination="@id/insertionFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_searchBarFragment"
-            app:destination="@id/searchBarFragment" />
-        <action
             android:id="@+id/action_homeFragment_to_bookDetailFragment"
-            app:destination="@id/bookDetailFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/chatFragment"
-        android:name="com.example.swapbook.chat.ChatFragment"
-        android:label="chat_fragment"
-        tools:layout="@layout/chat_fragment" >
-        <action
-            android:id="@+id/action_chatFragment_to_chatDetailFragment"
-            app:destination="@id/chatDetailFragment" />
-        <action
-            android:id="@+id/action_chatFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/chatDetailFragment"
-        android:name="com.example.swapbook.chat.ChatDetailFragment"
-        android:label="chat_detail_fragment"
-        tools:layout="@layout/chat_detail_fragment" >
-        <action
-            android:id="@+id/action_chatDetailFragment_to_clientDisplayFragment"
-            app:destination="@id/clientDisplayFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/activitiesFragment"
-        android:name="com.example.swapbook.activities.ActivitiesFragment"
-        android:label="activities_fragment"
-        tools:layout="@layout/activities_fragment" >
-        <action
-            android:id="@+id/action_activitiesFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-        <action
-            android:id="@+id/action_activitiesFragment_to_bookDetailFragment"
             app:destination="@id/bookDetailFragment" />
     </fragment>
     <fragment
@@ -74,30 +32,10 @@
         android:name="com.example.swapbook.bookdetail.BookDetailFragment"
         android:label="book_detail_fragment"
         tools:layout="@layout/book_detail_fragment" >
-        <action
-            android:id="@+id/action_bookDetail_to_activitiesFragment"
-            app:destination="@id/activitiesFragment" />
-        <action
-            android:id="@+id/action_bookDetail_to_clientDisplayFragment"
-            app:destination="@id/clientDisplayFragment" />
         <argument
             android:name="selectedPost"
             app:argType="com.example.swapbook.network.Post"
             />
     </fragment>
-    <fragment
-        android:id="@+id/searchBarFragment"
-        android:name="com.example.swapbook.searchbar.SearchBarFragment"
-        android:label="search_bar_fragment"
-        tools:layout="@layout/search_bar_fragment" >
-        <action
-            android:id="@+id/action_searchBarFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/clientDisplayFragment"
-        android:name="com.example.swapbook.client.ClientDisplayFragment"
-        android:label="client_display_fragment"
-        tools:layout="@layout/client_display_fragment" />
 
 </navigation>

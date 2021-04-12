@@ -3,4 +3,5 @@
     <dimen name="paddingDefault">8dp</dimen>
     <dimen name="homeSectionTitle">25sp</dimen>
     <dimen name="vediTuttiSize">18sp</dimen>
+    <dimen name="text_padding">8px</dimen>
 </resources>

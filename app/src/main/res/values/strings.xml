@@ -22,6 +22,7 @@
     <string name="label_profile">Profile</string>
     <string name="enter_password">Enter Password</string>
     <string name="enter_confirm_password">Enter Confirm Password</string>
+    <string name="harry_potter_random_synopsis">Late one night, Albus Dumbledore and Minerva McGonagall, professors at Hogwarts School of Witchcraft and Wizardry, along with the school\'...</string>
 
 
     <array name="genres">

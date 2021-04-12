@@ -19,6 +19,7 @@
             android:layout_height="wrap_content"
             android:padding="16dp">
 
+
             <ImageView
                 android:id="@+id/main_photo_image"
                 android:layout_width="0dp"
@@ -26,36 +27,417 @@
                 android:scaleType="centerCrop"
                 app:imageUrl="@{viewModel.selectedPost.imgSrcUrl}"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@tools:sample/backgrounds/scenic" />
 
             <TextView
-                android:id="@+id/book_title_text"
+                android:id="@+id/tvTITLE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/text_padding"
+                android:text="TITLE"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textColor="#D50000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/main_photo_image" />
+
+            <EditText
+                android:id="@+id/et_book_title_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:textColor="#de000000"
+                android:background="@null"
+                android:inputType="none"
+                android:singleLine="false"
                 android:text="@{viewModel.selectedPost.title}"
+                android:textColor="#de000000"
                 android:textSize="39sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/main_photo_image"
+                app:layout_constraintTop_toBottomOf="@+id/tvTITLE"
                 tools:text="Harry Potter" />
 
             <TextView
-                android:id="@+id/book_author_text"
+                android:id="@+id/tvAUTHOR"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/text_padding"
+                android:text="AUTHOR"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textColor="#D50000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_book_title_text"
+                tools:layout_editor_absoluteX="16dp" />
+
+            <EditText
+                android:id="@+id/et_book_author_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:background="@null"
+                android:inputType="none"
+                android:text="@{viewModel.selectedPost.author}"
                 android:textColor="#de000000"
                 android:textSize="20sp"
-                android:text="@{viewModel.selectedPost.author}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/book_title_text"
-                tools:text="$100,000" />
+                app:layout_constraintTop_toBottomOf="@+id/tvAUTHOR"
+                tools:text="Ramello Simone" />
 
+            <TextView
+                android:id="@+id/tvPUBLISHINGHOUSE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/text_padding"
+                android:text="PUBLISHING HOUSE"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textColor="#D50000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_book_author_text"
+                tools:layout_editor_absoluteX="16dp" />
 
+            <EditText
+                android:id="@+id/et_publishing_house_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:inputType="none"
+                android:text="@{viewModel.selectedPost.publishing_house}"
+                android:textColor="#de000000"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvPUBLISHINGHOUSE"
+                tools:text="Pininfarian" />
 
+            <TextView
+                android:id="@+id/tvPUBLISHINGYEAR"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/text_padding"
+                android:text="PUBLISHING YEAR"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textColor="#D50000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_publishing_house_text"
+                tools:layout_editor_absoluteX="16dp" />
+
+            <EditText
+                android:id="@+id/et_publishing_year_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:inputType="none"
+                android:text="@{viewModel.selectedPost.publishing_year}"
+                android:textColor="#de000000"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvPUBLISHINGYEAR"
+                tools:text="2015" />
+
+            <TextView
+                android:id="@+id/tvGENRE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/text_padding"
+                android:text="GENRE"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textColor="#D50000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_publishing_year_text"
+                tools:layout_editor_absoluteX="16dp" />
+
+            <EditText
+                android:id="@+id/et_genre_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:inputType="none"
+                android:text="@{viewModel.selectedPost.genre_desc}"
+                android:textColor="#de000000"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvGENRE"
+                tools:text="Giallo" />
+
+            <TextView
+                android:id="@+id/tvLENGHT"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/text_padding"
+                android:text="LENGHT"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textColor="#D50000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_genre_text"
+                tools:layout_editor_absoluteX="16dp" />
+
+            <EditText
+                android:id="@+id/et_lenght_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:inputType="none"
+                android:text="@{viewModel.selectedPost.lenght}"
+                android:textColor="#de000000"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvLENGHT"
+                tools:text="17cm" />
+
+            <TextView
+                android:id="@+id/tvHEIGHT"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/text_padding"
+                android:text="HEIGHT"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textColor="#D50000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_lenght_text"
+                tools:layout_editor_absoluteX="16dp" />
+
+            <EditText
+                android:id="@+id/et_height_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:inputType="none"
+                android:text="@{viewModel.selectedPost.height}"
+                android:textColor="#de000000"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvHEIGHT"
+                tools:text="24cm" />
+
+            <TextView
+                android:id="@+id/tvWIDTH"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/text_padding"
+                android:text="WIDTH"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textColor="#D50000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_height_text"
+                tools:layout_editor_absoluteX="16dp" />
+
+            <EditText
+                android:id="@+id/et_width_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:inputType="none"
+                android:text="@{viewModel.selectedPost.width}"
+                android:textColor="#de000000"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvWIDTH"
+                tools:text="3cm" />
+
+            <TextView
+                android:id="@+id/tvCONDITION"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/text_padding"
+                android:text="CONDITION"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textColor="#D50000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_width_text"
+                tools:layout_editor_absoluteX="16dp" />
+
+            <EditText
+                android:id="@+id/et_condition_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:inputType="none"
+                android:text="@{viewModel.selectedPost.condition}"
+                android:textColor="#de000000"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvCONDITION"
+                tools:text="NUOVO" />
+
+            <TextView
+                android:id="@+id/tvCITY"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/text_padding"
+                android:text="CITY"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textColor="#D50000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_condition_text"
+                tools:layout_editor_absoluteX="16dp" />
+
+            <EditText
+                android:id="@+id/et_city_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:inputType="none"
+                android:text="@{viewModel.selectedPost.city}"
+                android:textColor="#de000000"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvCITY"
+                tools:text="TORINO" />
+
+            <TextView
+                android:id="@+id/tvDESCRIPTION"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/text_padding"
+                android:text="DESCRIPTION"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textColor="#D50000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_city_text"
+                tools:layout_editor_absoluteX="16dp" />
+
+            <EditText
+                android:id="@+id/et_description_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:inputType="none"
+                android:text="@{viewModel.selectedPost.description}"
+                android:textColor="#de000000"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvDESCRIPTION"
+                tools:text="@string/harry_potter_random_synopsis" />
+
+            <TextView
+                android:id="@+id/tvPRICE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/text_padding"
+                android:text="PRICE"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textColor="#D50000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_description_text"
+                tools:layout_editor_absoluteX="16dp" />
+
+            <EditText
+                android:id="@+id/et_price_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:inputType="none"
+                android:text="@{viewModel.selectedPost.price}"
+                android:textColor="#de000000"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvPRICE"
+                tools:text="10€" />
+
+            <TextView
+                android:id="@+id/tvVENDORNAME"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/text_padding"
+                android:text="VENDOR NAME"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textColor="#D50000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_price_text"
+                tools:layout_editor_absoluteX="16dp" />
+
+            <EditText
+                android:id="@+id/et_vendor_name_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:inputType="none"
+                android:text="@{viewModel.selectedPost.name}"
+                android:textColor="#de000000"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvVENDORNAME"
+                tools:text="Jayson" />
+
+            <TextView
+                android:id="@+id/tvVENDORSURNAME"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/text_padding"
+                android:text="SURNAME"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textColor="#D50000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_vendor_name_text"
+                tools:layout_editor_absoluteX="16dp" />
+
+            <EditText
+                android:id="@+id/et_vendor_surname_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:inputType="none"
+                android:paddingBottom="100sp"
+                android:text="@{viewModel.selectedPost.surname}"
+                android:textColor="#de000000"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvVENDORSURNAME"
+                tools:text="Andal" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

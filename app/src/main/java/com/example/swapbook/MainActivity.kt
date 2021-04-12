@@ -17,11 +17,9 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.swapbook.activities.ActivitiesFragment
-import com.example.swapbook.chat.ChatFragment
 import com.example.swapbook.home.HomeFragment
 import com.example.swapbook.home.HomeFragmentDirections
 import com.example.swapbook.insertion.InsertionFragment
-import com.example.swapbook.searchbar.SearchBarFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.internal.ContextUtils.getActivity
 
@@ -34,6 +32,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val bottomNavigationView = findViewById<View>(R.id.bottom_navigation) as BottomNavigationView
+        bottomNavigationView.selectedItemId = R.id.homeFragment
 
 //        setupViews()
         bottom_navigation.setOnNavigationItemSelectedListener {
@@ -50,8 +51,8 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.insertionFragment -> {
-//                    val intent = Intent(this,HomeFragment::class.java)
-//                    startActivity(intent)
+                    val intent = Intent(this, InsertionActivity::class.java)
+                    startActivity(intent)
                     true
                 }
                 R.id.chatFragment -> {

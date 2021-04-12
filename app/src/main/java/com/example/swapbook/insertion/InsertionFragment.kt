@@ -15,7 +15,6 @@ import com.example.swapbook.bookdetail.BookDetailViewModelFactory
 import com.example.swapbook.databinding.InsertionFragmentBinding
 import com.example.swapbook.home.HomeViewModel
 import com.example.swapbook.home.HomeViewModelFactory
-import com.example.swapbook.searchbar.SearchBarViewModel
 
 class InsertionFragment : Fragment() {
 
@@ -45,7 +44,6 @@ class InsertionFragment : Fragment() {
 
         binding.buttonAddPost.setOnClickListener {
             insertionViewModel.addPost(binding)
-
         }
 
     return binding.root
