@@ -36,6 +36,7 @@ suspend fun retrieve(): List<Post>
 @POST("index.php")
     fun insertData(
         @Field("action") action: String?,
+        @Field("userID") userID: String?,
         @Field("bookTitle") bookTitle: String?,
         @Field("authorName") authorName: String?,
         @Field("genre") genre: String?,
@@ -51,6 +52,13 @@ suspend fun retrieve(): List<Post>
         @Field("province") province: String?,
         @Field("price") price: String?
 ):Call<ResponseModel?>?
+
+    @FormUrlEncoded
+    @POST("index.php")
+    fun insertUser(
+        @Field("action") action: String?,
+        @Field("ID_user") idUser: String?,
+    ):Call<ResponseModel?>?
 }
 
 object SwapBookApi {

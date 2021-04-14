@@ -36,6 +36,7 @@
         android:padding="12dp"
         android:textColor="@color/colorText" />
 
+
     <EditText
         android:id="@+id/etEmail"
         android:layout_width="match_parent"

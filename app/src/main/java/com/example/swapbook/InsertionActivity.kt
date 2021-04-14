@@ -9,6 +9,8 @@ import com.example.swapbook.home.HomeFragment
 import com.example.swapbook.network.ResponseModel
 import com.example.swapbook.network.SwapBookApi
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_insertion.*
 import kotlinx.android.synthetic.main.activity_users_list.*
 import kotlinx.android.synthetic.main.activity_users_list.bottom_navigation
@@ -17,9 +19,14 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class InsertionActivity : AppCompatActivity() {
+    private var auth: FirebaseAuth? = null
+    private  var firebaseUser: FirebaseUser? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_insertion)
+
+        auth = FirebaseAuth.getInstance()
+        firebaseUser = auth!!.currentUser!!
 
         val bottomNavigationView = findViewById<View>(R.id.bottom_navigation) as BottomNavigationView
         bottomNavigationView.selectedItemId = R.id.insertionFragment
@@ -75,9 +82,9 @@ class InsertionActivity : AppCompatActivity() {
         val province = editTextProvince.text.toString()
         val price = editTextPrice.text.toString()
 
-
+        firebaseUser?.let { Log.i("msgins", it.uid) }
         val insertData: Call<ResponseModel?>? = SwapBookApi.retrofitService.insertData(
-            "INSERT", bookTitle,
+            "INSERT", firebaseUser!!.uid,  bookTitle,
             authorName,
             genre,
             description, publishingYear, publishingHouse,physicalDescription,condition,

@@ -46,44 +46,6 @@ class InsertionViewModel(application: Application): ViewModel(){
         val price = binding.editTextPrice.text.toString()
 
 
-        val insertData: Call<ResponseModel?>? = SwapBookApi.retrofitService.insertData(
-                    "INSERT", bookTitle,
-                    authorName,
-            genre,
-                    description, publishingYear, publishingHouse,physicalDescription,condition,
-                    lenght,height,width,city,province,price
-        )
-
-        insertData!!.enqueue(object : Callback<ResponseModel?> {
-            override fun onResponse(
-                    call: Call<ResponseModel?>?,
-                    response: Response<ResponseModel?>?
-            ) {
-
-                var myResponseCode = ""
-                if (response?.body() != null) {
-                    myResponseCode = response.body()!!.code!!
-                }
-                when {
-                    myResponseCode == "1" -> {
-                        Log.i( "msg:","""SUCCESS:
-                 1. Data Inserted Successfully.
-                 2. ResponseCode: $myResponseCode"""
-                        )
-                    }
-                    myResponseCode.equals("2", ignoreCase = true) -> {
-                        Log.i( "msg:", "UNSUCCESSFUL However Good Response. 1. CONNECTION TO SERVER WAS SUCCESSFUL 2. WE ATTEMPTED POSTING DATA BUT ENCOUNTERED ResponseCode: $myResponseCode 3. Most probably the problem is with your PHP Code."                        )
-                    }
-                    myResponseCode.equals("3", ignoreCase = true) -> {
-                        Log.i( "msg:", "NO MYSQL CONNECTION Your PHP Code is unable to connect to mysql database. Make sure you have supplied correct database credentials." )
-                    }
-                }
-            }
-
-            override fun onFailure(call: Call<ResponseModel?>?, t: Throwable) {
-                Log.i( "msg:", "FAILURE FAILURE THROWN DURING INSERT." + " ERROR Message: " + t.message)
-            }
-        })
 
     }
 }
