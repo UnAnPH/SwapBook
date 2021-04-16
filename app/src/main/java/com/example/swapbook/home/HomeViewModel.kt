@@ -54,12 +54,16 @@ class HomeViewModel(
             try {
                 _posts.value = SwapBookApi.retrofitService.retrieve()
                 _status.value = MarsApiStatus.DONE
+                Log.i("msg", "bravo")
             } catch (e: Exception) {
                 _status.value = MarsApiStatus.ERROR
                 _posts.value = ArrayList()
+                Log.i("msg", e.toString())
             }
         }
     }
+
+
 
     fun displayPostDetails(post: Post) {
         _navigateToSelectedPost.value = post

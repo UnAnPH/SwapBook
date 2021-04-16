@@ -13,9 +13,6 @@ import retrofit2.http.POST
 
 private const val base_url = "http://10.0.2.2/SwapBook/"
 
-private const val BASE_URL =
-        "https://android-kotlin-fun-mars-server.appspot.com"
-
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
     .build()
@@ -37,6 +34,7 @@ suspend fun retrieve(): List<Post>
     fun insertData(
         @Field("action") action: String?,
         @Field("userID") userID: String?,
+        @Field("imgUrl") imgUrl: String?,
         @Field("bookTitle") bookTitle: String?,
         @Field("authorName") authorName: String?,
         @Field("genre") genre: String?,
@@ -58,6 +56,12 @@ suspend fun retrieve(): List<Post>
     fun insertUser(
         @Field("action") action: String?,
         @Field("ID_user") idUser: String?,
+    ):Call<ResponseModel?>?
+
+    @FormUrlEncoded
+    @POST("index.php")
+    fun getMaxIDPost(
+        @Field("action") action: String?,
     ):Call<ResponseModel?>?
 }
 

@@ -18,11 +18,12 @@
                 >
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
+
                     <TextView
-                        android:id="@+id/addBookTextView"
+                        android:id="@+id/addPostTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
@@ -33,6 +34,15 @@
                         app:layout_constraintTop_toTopOf="parent"
                         tools:layout_editor_absoluteX="112dp"
                         tools:layout_editor_absoluteY="16dp" />
+
+                    <ImageView
+                        android:id="@+id/postImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/addPostTextView"
+                        app:srcCompat="@drawable/open_book_clipart_03" />
 
                     <EditText
                         android:id="@+id/editTextBookTitle"
@@ -46,7 +56,7 @@
                         android:inputType="text"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/addBookTextView" />
+                        app:layout_constraintTop_toBottomOf="@+id/postImage" />
 
                     <EditText
                         android:id="@+id/editTextAuthorName"

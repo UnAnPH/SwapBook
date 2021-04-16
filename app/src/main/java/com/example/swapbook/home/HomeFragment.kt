@@ -2,6 +2,7 @@ package com.example.swapbook.home
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -21,6 +22,7 @@ class HomeFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+
         val binding: HomeFragmentBinding = DataBindingUtil.inflate(
             inflater, R.layout.home_fragment, container, false)
 
@@ -38,9 +40,9 @@ class HomeFragment : Fragment() {
 
         binding.lifecycleOwner = this
 
-        val navHostFragment =
-                getActivity()?.getSupportFragmentManager()?.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        val navController = navHostFragment.navController
+//        val navHostFragment =
+//                getActivity()?.getSupportFragmentManager()?.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+//        val navController = navHostFragment.navController
 
         binding.setLifecycleOwner(this)
 

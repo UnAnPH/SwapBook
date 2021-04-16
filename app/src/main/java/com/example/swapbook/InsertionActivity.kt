@@ -1,32 +1,56 @@
 package com.example.swapbook
 
 import android.content.Intent
+import android.graphics.Bitmap
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import com.example.swapbook.home.HomeFragment
 import com.example.swapbook.network.ResponseModel
 import com.example.swapbook.network.SwapBookApi
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import kotlinx.android.synthetic.main.activity_insertion.*
 import kotlinx.android.synthetic.main.activity_users_list.*
 import kotlinx.android.synthetic.main.activity_users_list.bottom_navigation
+import kotlinx.android.synthetic.main.activtiy_profile.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.IOException
+import java.util.*
 
 class InsertionActivity : AppCompatActivity() {
     private var auth: FirebaseAuth? = null
     private  var firebaseUser: FirebaseUser? = null
+    private lateinit var databaseReference: DatabaseReference
+    private var filePath: Uri? = null
+
+    private val PICK_IMAGE_REQUEST: Int = 2020
+
+    private lateinit var storage: FirebaseStorage
+    private lateinit var storageRef: StorageReference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_insertion)
 
         auth = FirebaseAuth.getInstance()
         firebaseUser = auth!!.currentUser!!
+
+        databaseReference =
+            FirebaseDatabase.getInstance().getReference("Posts")
+
+        storage = FirebaseStorage.getInstance()
+        storageRef = storage.reference
 
         val bottomNavigationView = findViewById<View>(R.id.bottom_navigation) as BottomNavigationView
         bottomNavigationView.selectedItemId = R.id.insertionFragment
@@ -64,6 +88,57 @@ class InsertionActivity : AppCompatActivity() {
         buttonAddPost.setOnClickListener {
            addPost()
         }
+
+        postImage.setOnClickListener {
+            chooseImage()
+
+        }
+    }
+
+    private fun chooseImage() {
+        val intent: Intent = Intent()
+        intent.type = "image/*"
+        intent.action = Intent.ACTION_GET_CONTENT
+        startActivityForResult(Intent.createChooser(intent, "Select Image"), PICK_IMAGE_REQUEST)
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode != null) {
+            filePath = data!!.data
+            try {
+                var bitmap: Bitmap = MediaStore.Images.Media.getBitmap(contentResolver, filePath)
+                postImage.setImageBitmap(bitmap)
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+        }
+        uploadImage()
+    }
+
+    private fun uploadImage() {
+        if (filePath != null) {
+            var ref: StorageReference = storageRef.child("image/" + UUID.randomUUID().toString())
+
+            val uploadTask = ref.putFile(filePath!!)
+            uploadTask.continueWith {
+                if (!it.isSuccessful) {
+                    it.exception?.let { t ->
+                        throw t
+                    }
+                }
+                ref.downloadUrl
+            }.addOnCompleteListener {
+                if (it.isSuccessful) {
+                    it.result!!.addOnSuccessListener { task ->
+                        postImage.contentDescription = task.toString()
+                    }
+                }
+            }
+        }
+
+
     }
 
     private fun addPost() {
@@ -81,10 +156,12 @@ class InsertionActivity : AppCompatActivity() {
         val city = editTextCity.text.toString()
         val province = editTextProvince.text.toString()
         val price = editTextPrice.text.toString()
+        val imgUrl = postImage.contentDescription.toString()
 
-        firebaseUser?.let { Log.i("msgins", it.uid) }
+//        firebaseUser?.let { Log.i("msgins", it.uid) }
+
         val insertData: Call<ResponseModel?>? = SwapBookApi.retrofitService.insertData(
-            "INSERT", firebaseUser!!.uid,  bookTitle,
+            "INSERT", firebaseUser!!.uid, imgUrl,  bookTitle,
             authorName,
             genre,
             description, publishingYear, publishingHouse,physicalDescription,condition,
@@ -121,6 +198,8 @@ class InsertionActivity : AppCompatActivity() {
                 Log.i( "msg:", "FAILURE FAILURE THROWN DURING INSERT." + " ERROR Message: " + t.message)
             }
         })
+
+
 
 
     }

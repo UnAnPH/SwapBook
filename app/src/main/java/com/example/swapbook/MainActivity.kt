@@ -19,7 +19,6 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.swapbook.activities.ActivitiesFragment
 import com.example.swapbook.home.HomeFragment
 import com.example.swapbook.home.HomeFragmentDirections
-import com.example.swapbook.insertion.InsertionFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.internal.ContextUtils.getActivity
 
@@ -73,30 +72,30 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun setupViews()
-    {
-        var navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        navController = navHostFragment.navController
-        NavigationUI.setupWithNavController(bottom_navigation, navHostFragment.navController)
-
-        //var appBarConfiguration = AppBarConfiguration(navHostFragment.navController.graph)
-        var appBarConfiguration = AppBarConfiguration(setOf(R.id.homeFragment,
-                R.id.searchBarFragment,
-                R.id.chatFragment,
-                R.id.activitiesFragment,
-                R.id.insertionFragment))
-        setupActionBarWithNavController(navHostFragment.navController, appBarConfiguration)
-    }
-
-    fun showBottomNavigation()
-    {
-        bottom_navigation.visibility = View.VISIBLE
-    }
-
-    fun hideBottomNavigation()
-    {
-        bottom_navigation.visibility = View.GONE
-    }
+//    fun setupViews()
+//    {
+//        var navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+//        navController = navHostFragment.navController
+//        NavigationUI.setupWithNavController(bottom_navigation, navHostFragment.navController)
+//
+//        //var appBarConfiguration = AppBarConfiguration(navHostFragment.navController.graph)
+//        var appBarConfiguration = AppBarConfiguration(setOf(R.id.homeFragment,
+//                R.id.searchBarFragment,
+//                R.id.chatFragment,
+//                R.id.activitiesFragment,
+//                R.id.insertionFragment))
+//        setupActionBarWithNavController(navHostFragment.navController, appBarConfiguration)
+//    }
+//
+//    fun showBottomNavigation()
+//    {
+//        bottom_navigation.visibility = View.VISIBLE
+//    }
+//
+//    fun hideBottomNavigation()
+//    {
+//        bottom_navigation.visibility = View.GONE
+//    }
 
 
 

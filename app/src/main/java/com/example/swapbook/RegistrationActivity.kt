@@ -75,7 +75,6 @@ class RegistrationActivity : AppCompatActivity() {
                     userIDInt = userId
                     databaseReference =
                         FirebaseDatabase.getInstance().getReference("Users").child(userId)
-                    Log.i("msg:", databaseReference.toString())
                     val hashMap: HashMap<String, String> = HashMap()
                     hashMap.put("userId", userId)
                     hashMap.put("userName", userName)

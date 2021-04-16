@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.example.swapbook.R
 import com.example.swapbook.databinding.ActivitiesFragmentBinding
-import com.example.swapbook.insertion.InsertionViewModel
 
 class ActivitiesFragment : Fragment() {
 
