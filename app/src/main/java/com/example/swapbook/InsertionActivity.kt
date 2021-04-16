@@ -8,8 +8,6 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
-import android.widget.Toast
-import com.example.swapbook.home.HomeFragment
 import com.example.swapbook.network.ResponseModel
 import com.example.swapbook.network.SwapBookApi
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -20,9 +18,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import kotlinx.android.synthetic.main.activity_insertion.*
-import kotlinx.android.synthetic.main.activity_users_list.*
 import kotlinx.android.synthetic.main.activity_users_list.bottom_navigation
-import kotlinx.android.synthetic.main.activtiy_profile.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -157,6 +153,7 @@ class InsertionActivity : AppCompatActivity() {
         val province = editTextProvince.text.toString()
         val price = editTextPrice.text.toString()
         val imgUrl = postImage.contentDescription.toString()
+
 
 //        firebaseUser?.let { Log.i("msgins", it.uid) }
 

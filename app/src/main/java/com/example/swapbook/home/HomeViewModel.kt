@@ -7,12 +7,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.swapbook.database.BookDatabaseDao
-import com.example.swapbook.database.BookDetail
+import com.example.swapbook.database.Genre
 import com.example.swapbook.network.Post
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import com.example.swapbook.network.SwapBookApi
 
 enum class MarsApiStatus { LOADING, ERROR, DONE }
@@ -43,6 +40,7 @@ class HomeViewModel(
      */
     init {
         getMarsRealEstateProperties()
+
     }
 
     /**
