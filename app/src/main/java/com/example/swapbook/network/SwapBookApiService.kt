@@ -63,6 +63,15 @@ suspend fun retrieve(): List<Post>
     fun getMaxIDPost(
         @Field("action") action: String?,
     ):Call<ResponseModel?>?
+
+    @FormUrlEncoded
+    @POST("index.php")
+    fun search(
+        @Field("action") action: String?,
+        @Field("query") query: String?,
+        @Field("start") start: String?,
+        @Field("limit") limit: String?
+    ): List<Post>
 }
 
 object SwapBookApi {

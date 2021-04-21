@@ -26,8 +26,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var navController: NavController
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -45,8 +43,8 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.searchBarFragment -> {
-//                    val intent = Intent(this,HomeFragment::class.java)
-//                    startActivity(intent)
+                    val intent = Intent(this,SearchActivity::class.java)
+                    startActivity(intent)
                     true
                 }
                 R.id.insertionFragment -> {

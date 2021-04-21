@@ -42,9 +42,6 @@ class InsertionActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         firebaseUser = auth!!.currentUser!!
 
-        databaseReference =
-            FirebaseDatabase.getInstance().getReference("Posts")
-
         storage = FirebaseStorage.getInstance()
         storageRef = storage.reference
 

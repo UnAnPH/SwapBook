@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_homeFragment_to_bookDetailFragment"
             app:destination="@id/bookDetailFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
     <fragment
         android:id="@+id/bookDetailFragment"
@@ -23,6 +26,14 @@
             android:name="selectedPost"
             app:argType="com.example.swapbook.network.Post"
             />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.swapbook.search.SearchFragment"
+        android:label="SearchFragment" >
+        <action
+            android:id="@+id/action_searchFragment_to_bookDetailFragment"
+            app:destination="@id/bookDetailFragment" />
     </fragment>
 
 </navigation>

@@ -19,4 +19,6 @@
         tools:src="@tools:sample/backgrounds/scenic"
         app:imageUrl="@{post.imgSrcUrl}"/>
 
+
+
 </layout>

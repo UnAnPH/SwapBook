@@ -23,16 +23,37 @@
     <string name="enter_password">Enter Password</string>
     <string name="enter_confirm_password">Enter Confirm Password</string>
     <string name="harry_potter_random_synopsis">Late one night, Albus Dumbledore and Minerva McGonagall, professors at Hogwarts School of Witchcraft and Wizardry, along with the school\'...</string>
+    <string name="action_search">search</string>
 
 
     <array name="genres">
-        <item>Giallo</item>
+        <item>Avventura</item>
+        <item>Autobiografia</item>
+        <item>Biografia</item>
+        <item>Cronaca</item>
+        <item>Cucina</item>
+        <item>Diritto</item>
+        <item>Distopia</item>
+        <item>Economia</item>
         <item>Fantascienza</item>
-        <item>Rosa</item>
-        <item>Scolastico</item>
         <item>Fantasy</item>
-        <item>Autobiografico</item>
-        <item>Thriller</item>
+        <item>Fiaba</item>
+        <item>Fumetti</item>
+        <item>Giallo</item>
+        <item>Horror</item>
+        <item>Informatica</item>
+        <item>Letteratura</item>
+        <item>Linguistico</item>
+        <item>Manga</item>
+        <item>Medicina</item>
+        <item>Politica</item>
+        <item>Religione</item>
+        <item>Romanzo storico</item>
+        <item>Rosa</item>
+        <item>Scienza</item>
+        <item>Scolastico</item>
+        <item>Sport</item>
+        <item>Umoristico</item>
     </array>
 
     <array name="sex">

@@ -1,41 +1,31 @@
-/*
- * Copyright 2019, The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- */
-
-package com.example.swapbook.home
+package com.example.swapbook.search
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.swapbook.databinding.GridViewItemBinding
 import com.example.swapbook.databinding.ListViewItemBinding
 import com.example.swapbook.network.Post
+import kotlinx.android.synthetic.main.list_view_item.view.*
+import kotlinx.android.synthetic.main.search_fragment.view.*
+import java.util.*
+import kotlin.collections.ArrayList
 
+class PostListAdapter(private val onClickListener: OnClickListener
+) : ListAdapter<Post,
+        PostListAdapter.PostViewHolder>(DiffCallback)
+{
 
-class PhotoGridAdapter( private val onClickListener: OnClickListener) : ListAdapter<Post,
-        PhotoGridAdapter.PostViewHolder>(DiffCallback) {
 
     init {
 
     }
 
     class PostViewHolder(private var binding:
-                         GridViewItemBinding
+                         ListViewItemBinding
     ):
         RecyclerView.ViewHolder(binding.root) {
 
@@ -47,11 +37,9 @@ class PhotoGridAdapter( private val onClickListener: OnClickListener) : ListAdap
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
-        return PostViewHolder(GridViewItemBinding.inflate(
+        return PostViewHolder(
+            ListViewItemBinding.inflate(
             LayoutInflater.from(parent.context)))
-//        return PostViewHolder(ListViewItemBinding.inflate(
-//            LayoutInflater.from(parent.context)))
-
     }
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
@@ -74,10 +62,7 @@ class PhotoGridAdapter( private val onClickListener: OnClickListener) : ListAdap
     }
 
     class OnClickListener(val clickListener: (post: Post) -> Unit) {
-        fun onClick(post:Post) = clickListener(post)
+        fun onClick(post: Post) = clickListener(post)
     }
 
 }
-
-
-

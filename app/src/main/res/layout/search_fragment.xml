@@ -5,16 +5,15 @@
 
     <data>
         <variable
-            name="homeViewModel"
-            type="com.example.swapbook.home.HomeViewModel" />
+            name="searchViewModel"
+            type="com.example.swapbook.search.SearchViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/homeConstraint"
+        android:id="@+id/searchConstraint"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
-        tools:context="com.example.swapbook.home.HomeFragment">
+        android:background="@color/white">
 
 
         <androidx.core.widget.NestedScrollView
@@ -30,30 +29,19 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout2"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp">
+                    android:layout_height="50dp">
 
-                    <Button
-                        android:id="@+id/button2"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:background="@drawable/ic_action_profile"
-                        android:padding="@dimen/paddingDefault"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/textView2"
-                        android:layout_width="wrap_content"
+                    <androidx.appcompat.widget.SearchView
+                        android:id="@+id/post_search"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/kaushan_script"
-                        android:text="@string/ApplicationName"
-                        android:textSize="60sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.237"
-                        app:layout_constraintStart_toEndOf="@+id/button2"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:textCursorDrawable="@null"
+                        app:iconifiedByDefault="false"
+                        app:queryBackground="@null" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -62,20 +50,20 @@
                     android:layout_height="match_parent">
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/photos_grid"
+                        android:id="@+id/post_list"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:clipToPadding="false"
                         android:padding="6dp"
-                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:gridData="@{homeViewModel.posts}"
+                        app:listData="@{searchViewModel.posts}"
                         app:spanCount="2"
                         tools:itemCount="16"
-                        tools:listitem="@layout/grid_view_item" />
+                        tools:listitem="@layout/list_view_item" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </LinearLayout>

@@ -11,6 +11,7 @@ import com.example.swapbook.R
 import com.example.swapbook.home.MarsApiStatus
 import com.example.swapbook.home.PhotoGridAdapter
 import com.example.swapbook.network.Post
+import com.example.swapbook.search.PostListAdapter
 
 @BindingAdapter("imageUrl")
 fun bindImage(imgView: ImageView, imgUrl: String?) {
@@ -26,6 +27,11 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
             .into(imgView)
     }
 }
+
+//@BindingAdapter("title")
+//fun  bindTitle(){
+//
+//}
 
 //@BindingAdapter("listData")
 //fun bindRecyclerView(recyclerView: RecyclerView,
@@ -53,7 +59,14 @@ fun bindStatus(statusImageView: ImageView,
 }
 
 @BindingAdapter("listData")
-fun bindRecyclerView(recyclerView: RecyclerView,
+fun bindRecyclerViewList(recyclerView: RecyclerView,
+                     data: List<Post>?) {
+    val adapter = recyclerView.adapter as PostListAdapter
+    adapter.submitList(data)
+}
+
+@BindingAdapter("gridData")
+fun bindRecyclerViewGrid(recyclerView: RecyclerView,
                      data: List<Post>?) {
     val adapter = recyclerView.adapter as PhotoGridAdapter
     adapter.submitList(data)

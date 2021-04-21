@@ -18,8 +18,6 @@ import de.hdodenhof.circleimageview.CircleImageView
 class UserAdapter(private val context: Context, private val userList: ArrayList<User>) :
     RecyclerView.Adapter<UserAdapter.ViewHolder>() {
 
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_user, parent, false)
         return ViewHolder(view)
