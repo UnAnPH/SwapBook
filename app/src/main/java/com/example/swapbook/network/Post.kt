@@ -31,6 +31,6 @@ data class Post(
         val genre_desc: String,
 
         //user
+        val ID_creator: String?,
         val name: String?,
-        val surname: String?
 ): Parcelable {}

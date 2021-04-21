@@ -394,13 +394,24 @@
                 app:layout_constraintTop_toBottomOf="@+id/et_price_text"
                 tools:layout_editor_absoluteX="16dp" />
 
-            <EditText
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CHAT"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/et_vendor_name_text"
+                app:layout_constraintTop_toBottomOf="@+id/tvVENDORNAME" />
+
+            <TextView
                 android:id="@+id/et_vendor_name_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:inputType="none"
+                android:paddingBottom="70dp"
                 android:text="@{viewModel.selectedPost.name}"
+                android:contentDescription="@{viewModel.selectedPost.ID_creator}"
                 android:textColor="#de000000"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -409,35 +420,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tvVENDORNAME"
                 tools:text="Jayson" />
 
-            <TextView
-                android:id="@+id/tvVENDORSURNAME"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/text_padding"
-                android:text="SURNAME"
-                android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                android:textColor="#D50000"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/et_vendor_name_text"
-                tools:layout_editor_absoluteX="16dp" />
 
-            <EditText
-                android:id="@+id/et_vendor_surname_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:inputType="none"
-                android:paddingBottom="100sp"
-                android:text="@{viewModel.selectedPost.surname}"
-                android:textColor="#de000000"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvVENDORSURNAME"
-                tools:text="Andal" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

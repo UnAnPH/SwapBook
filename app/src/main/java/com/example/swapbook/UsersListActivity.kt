@@ -46,8 +46,8 @@ class UsersListActivity : AppCompatActivity() {
                     true
                 }
                 R.id.searchBarFragment -> {
-//                    val intent = Intent(this,HomeFragment::class.java)
-//                    startActivity(intent)
+                    val intent = Intent(this,SearchActivity::class.java)
+                    startActivity(intent)
                     true
                 }
                 R.id.insertionFragment -> {
@@ -56,6 +56,8 @@ class UsersListActivity : AppCompatActivity() {
                     true
                 }
                 R.id.chatFragment -> {
+                    val intent = Intent(this, UsersListActivity::class.java)
+                    startActivity(intent)
                     true
                 }
                 R.id.activitiesFragment -> {
@@ -132,10 +134,6 @@ class UsersListActivity : AppCompatActivity() {
                                 var chatted = false
                                 for (dataSnapShot2: DataSnapshot in snapshot.children) {
                                     val chatstatus = dataSnapShot2.getValue(ChatStatus::class.java)
-                                    chatstatus?.let { Log.i("chatstatus receiverid:", it.receiverId) }
-                                    chatstatus?.let { Log.i("chatstatus senderId:", it.senderId) }
-                                    Log.i("chat receiverid:", userid)
-                                    Log.i("chat sender:", user!!.userId)
                                     if (chatstatus != null) {
                                         if (((chatstatus.receiverId == user!!.userId) && (chatstatus.senderId == userid)) ||
                                             ((chatstatus.receiverId == userid) && (chatstatus.senderId == user!!.userId))
@@ -144,23 +142,14 @@ class UsersListActivity : AppCompatActivity() {
                                         }
                                     }
                                 }
-
-                                Log.i("userlist", userList.toString())
-
                                 val userAdapter = UserAdapter(this@UsersListActivity, userList)
-
                                 userRecyclerView.adapter = userAdapter
 
                             }
                         })
                     }
                 }
-
-
-
             }
         })
-
-
     }
 }

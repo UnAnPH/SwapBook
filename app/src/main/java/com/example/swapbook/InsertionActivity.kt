@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
+import com.example.swapbook.home.HomeFragment
 import com.example.swapbook.network.ResponseModel
 import com.example.swapbook.network.SwapBookApi
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -57,11 +58,13 @@ class InsertionActivity : AppCompatActivity() {
                     true
                 }
                 R.id.searchBarFragment -> {
-//                    val intent = Intent(this,HomeFragment::class.java)
-//                    startActivity(intent)
+                    val intent = Intent(this, SearchActivity::class.java)
+                    startActivity(intent)
                     true
                 }
                 R.id.insertionFragment -> {
+                    val intent = Intent(this, InsertionActivity::class.java)
+                    startActivity(intent)
                     true
                 }
                 R.id.chatFragment -> {
