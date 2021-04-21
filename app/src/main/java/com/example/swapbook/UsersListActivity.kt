@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide
 import com.example.swapbook.firebase.FirebaseService
 import com.example.swapbook.helpers.UserAdapter
 import com.example.swapbook.home.HomeFragment
+import com.example.swapbook.model.ChatStatus
 import com.example.swapbook.model.User
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.FirebaseApp
@@ -87,6 +88,7 @@ class UsersListActivity : AppCompatActivity() {
     }
 
     fun getUsersList() {
+        userList.clear()
         val firebase: FirebaseUser = FirebaseAuth.getInstance().currentUser!!
 
         var userid = firebase.uid
@@ -101,7 +103,7 @@ class UsersListActivity : AppCompatActivity() {
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                userList.clear()
+
                 val currentUser = snapshot.getValue(User::class.java)
                 if (currentUser!!.profileImage == "") {
                     imgProfile.setImageResource(R.drawable.profile_image)
@@ -113,14 +115,52 @@ class UsersListActivity : AppCompatActivity() {
                 for (dataSnapShot: DataSnapshot in snapshot.children) {
                     val user = dataSnapShot.getValue(User::class.java)
                     if (!user!!.userId.equals(firebase.uid)) {
-                      userList.add(user)
+
+                        val databaseReference2: DatabaseReference =
+                            FirebaseDatabase.getInstance().getReference("ChatsStatus")
+
+                        databaseReference2.addValueEventListener(object : ValueEventListener {
+                            override fun onCancelled(error: DatabaseError) {
+                                Toast.makeText(
+                                    applicationContext,
+                                    error.message,
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+
+                            override fun onDataChange(snapshot: DataSnapshot) {
+                                var chatted = false
+                                for (dataSnapShot2: DataSnapshot in snapshot.children) {
+                                    val chatstatus = dataSnapShot2.getValue(ChatStatus::class.java)
+                                    chatstatus?.let { Log.i("chatstatus receiverid:", it.receiverId) }
+                                    chatstatus?.let { Log.i("chatstatus senderId:", it.senderId) }
+                                    Log.i("chat receiverid:", userid)
+                                    Log.i("chat sender:", user!!.userId)
+                                    if (chatstatus != null) {
+                                        if (((chatstatus.receiverId == user!!.userId) && (chatstatus.senderId == userid)) ||
+                                            ((chatstatus.receiverId == userid) && (chatstatus.senderId == user!!.userId))
+                                        ) {
+                                            userList.add(user)
+                                        }
+                                    }
+                                }
+
+                                Log.i("userlist", userList.toString())
+
+                                val userAdapter = UserAdapter(this@UsersListActivity, userList)
+
+                                userRecyclerView.adapter = userAdapter
+
+                            }
+                        })
                     }
                 }
 
-                val userAdapter = UserAdapter(this@UsersListActivity, userList)
 
-                userRecyclerView.adapter = userAdapter
+
             }
         })
+
+
     }
 }

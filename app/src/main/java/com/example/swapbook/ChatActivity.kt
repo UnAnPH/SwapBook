@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.swapbook.helpers.ChatAdapter
 import com.example.swapbook.model.Chat
+import com.example.swapbook.model.ChatStatus
 //import com.example.swapbook.model.NotificationData
 //import com.example.swapbook.model.PushNotification
 import com.example.swapbook.model.User
@@ -97,6 +98,43 @@ class ChatActivity : AppCompatActivity() {
         hashMap.put("message", message)
 
         reference!!.child("Chat").push().setValue(hashMap)
+
+        val databaseReference: DatabaseReference =
+            FirebaseDatabase.getInstance().getReference("ChatsStatus")
+
+        databaseReference.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(applicationContext, error.message, Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                var chatted = false
+                for (dataSnapShot: DataSnapshot in snapshot.children) {
+                    val chatstatus = dataSnapShot.getValue(ChatStatus::class.java)
+                    chatstatus?.let { Log.i("chatstatus receiverid:", it.receiverId) }
+                    chatstatus?.let { Log.i("chatstatus senderId:", it.senderId) }
+                    Log.i("chat receiverid:", receiverId)
+                    Log.i("chat senderId:", senderId)
+                    if (chatstatus != null) {
+                        if (((chatstatus.receiverId == receiverId) && (chatstatus.senderId == senderId))) {
+                            chatted = true
+                        }
+                    }
+                }
+                Log.i("chatted:", chatted.toString())
+                if(!chatted) {
+                    var hashMap2: HashMap<String, String> = HashMap()
+                    hashMap2.put("senderId", senderId)
+                    hashMap2.put("receiverId", receiverId)
+                    hashMap2.put("status", "1")
+
+                    reference!!.child("ChatsStatus").push().setValue(hashMap2)
+                }
+            }
+
+        })
+
+
 
     }
     fun readMessage(senderId: String, receiverId: String) {
