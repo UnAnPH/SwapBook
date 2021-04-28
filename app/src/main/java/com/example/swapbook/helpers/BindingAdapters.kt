@@ -2,6 +2,7 @@ package com.example.swapbook.helpers
 
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -25,6 +26,14 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
                 .placeholder(R.drawable.loading_animation)
                 .error(R.drawable.ic_broken_image))
             .into(imgView)
+    }
+}
+
+@BindingAdapter("formattedPrice")
+fun bindPrice(textView: TextView, text: String?){
+    text?.let {
+        val text = text.plus("€")
+        textView.text = text
     }
 }
 

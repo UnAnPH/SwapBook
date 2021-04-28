@@ -15,7 +15,7 @@ data class Post(
         val description: String,
         @Json(name = "img_src") val imgSrcUrl: String,
         val city: String,
-        val price: String,
+        var price: String,
         val state: Int,
 
         //book

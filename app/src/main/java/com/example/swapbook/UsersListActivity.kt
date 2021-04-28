@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.example.swapbook.firebase.FirebaseService
 import com.example.swapbook.helpers.UserAdapter
 import com.example.swapbook.home.HomeFragment
@@ -26,16 +27,46 @@ import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_users_list.*
 import kotlinx.android.synthetic.main.activity_users_list.bottom_navigation
+import kotlinx.android.synthetic.main.activity_users_list.imgBack
+import kotlinx.android.synthetic.main.activtiy_profile.*
 
 
 class UsersListActivity : AppCompatActivity() {
     var userList = ArrayList<User>()
+    private lateinit var firebaseUser: FirebaseUser
+    private lateinit var databaseReference: DatabaseReference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_users_list)
 
         val bottomNavigationView = findViewById<View>(R.id.bottom_navigation) as BottomNavigationView
         bottomNavigationView.selectedItemId = R.id.chatFragment
+
+        firebaseUser = FirebaseAuth.getInstance().currentUser!!
+
+        databaseReference =
+            FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.uid)
+
+        databaseReference.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(applicationContext, error.message, Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val user = snapshot.getValue(User::class.java)
+
+                if (user!!.profileImage == "") {
+                    imgProfile.setImageResource(R.drawable.profile_image)
+                } else {
+                    Glide.with(getApplicationContext()).load(user.profileImage)
+                        .apply(
+                            RequestOptions()
+                                .placeholder(R.drawable.loading_animation)
+                                .error(R.drawable.ic_broken_image))
+                        .into(imgProfile)
+                }
+            }
+        })
 
         bottom_navigation.setOnNavigationItemSelectedListener {
                 item ->
@@ -107,10 +138,11 @@ class UsersListActivity : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
 
                 val currentUser = snapshot.getValue(User::class.java)
+
                 if (currentUser!!.profileImage == "") {
                     imgProfile.setImageResource(R.drawable.profile_image)
                 } else {
-                    Glide.with(this@UsersListActivity).load(currentUser.profileImage).into(
+                    Glide.with(getApplicationContext()).load(currentUser.profileImage).into(
                         imgProfile
                     )
                 }

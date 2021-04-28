@@ -61,4 +61,6 @@
         <item>Femmina</item>
         <item>Altro</item>
     </array>
+
+    <string name="display_price">$%,.0s</string>
 </resources>

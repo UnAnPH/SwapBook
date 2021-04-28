@@ -23,6 +23,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.internal.ContextUtils.getActivity
 
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.bottom_navigation
+import kotlinx.android.synthetic.main.activity_users_list.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,6 +34,8 @@ class MainActivity : AppCompatActivity() {
 
         val bottomNavigationView = findViewById<View>(R.id.bottom_navigation) as BottomNavigationView
         bottomNavigationView.selectedItemId = R.id.homeFragment
+
+
 
 //        setupViews()
         bottom_navigation.setOnNavigationItemSelectedListener {

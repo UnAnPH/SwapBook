@@ -51,6 +51,7 @@
                     android:layout_weight="0.5"
                     android:padding="5dp"
                     android:src="@mipmap/ic_launcher" />
+
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView

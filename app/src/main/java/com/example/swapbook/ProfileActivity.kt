@@ -9,6 +9,7 @@ import android.provider.MediaStore
 import android.view.View
 import android.widget.Toast
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.example.swapbook.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -58,7 +59,12 @@ class ProfileActivity : AppCompatActivity() {
                 if (user.profileImage == "") {
                     userImage.setImageResource(R.drawable.profile_image)
                 } else {
-                    Glide.with(this@ProfileActivity).load(user.profileImage).into(userImage)
+                    Glide.with(getApplicationContext()).load(user.profileImage)
+                        .apply(
+                            RequestOptions()
+                                .placeholder(R.drawable.loading_animation)
+                                .error(R.drawable.ic_broken_image))
+                        .into(userImage)
                 }
             }
         })
@@ -79,16 +85,20 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun chooseImage() {
-        val intent: Intent = Intent()
-        intent.type = "image/*"
-        intent.action = Intent.ACTION_GET_CONTENT
-        startActivityForResult(Intent.createChooser(intent, "Select Image"), PICK_IMAGE_REQUEST)
+//        val intent: Intent = Intent()
+//        intent.type = "image/*"
+//        intent.action = Intent.ACTION_OPEN_DOCUMENT
+//        startActivityForResult(Intent.createChooser(intent, "Select Image"), PICK_IMAGE_REQUEST)
+
+        val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
+        startActivityForResult(gallery, 100)
     }
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode != null) {
+//        if (requestCode == PICK_IMAGE_REQUEST && resultCode != null) {
+            if (resultCode == RESULT_OK && requestCode == 100) {
             filePath = data!!.data
             try {
                 var bitmap: Bitmap = MediaStore.Images.Media.getBitmap(contentResolver, filePath)
