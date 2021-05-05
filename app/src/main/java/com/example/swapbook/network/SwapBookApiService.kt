@@ -18,9 +18,11 @@ private val moshi = Moshi.Builder()
     .build()
 
 private val retrofit = Retrofit.Builder()
-    .addConverterFactory(MoshiConverterFactory.create(moshi))
+    .addConverterFactory(MoshiConverterFactory.create(moshi).asLenient())
     .baseUrl(base_url)
     .build()
+
+
 
 
 
@@ -53,6 +55,30 @@ suspend fun retrieve(): List<Post>
 
     @FormUrlEncoded
     @POST("index.php")
+    fun updateData(
+        @Field("action") action: String?,
+        @Field("bookID") bookID: String?,
+        @Field("postID") postID: String?,
+        @Field("imgUrl") imgUrl: String?,
+        @Field("bookTitle") bookTitle: String?,
+        @Field("authorName") authorName: String?,
+        @Field("genre") genre: String?,
+        @Field("description") description: String?,
+        @Field("publishingYear") publishingYear: String?,
+        @Field("publishingHouse") publishingHouse: String?,
+        @Field("physicalDescription") physicalDescription: String?,
+        @Field("condition") condition: String?,
+        @Field("lenght") lenght: String?,
+        @Field("height") height: String?,
+        @Field("width") width: String?,
+        @Field("city") city: String?,
+        @Field("province") province: String?,
+        @Field("price") price: String?
+    ):Call<ResponseModel?>?
+
+
+    @FormUrlEncoded
+    @POST("index.php")
     fun insertUser(
         @Field("action") action: String?,
         @Field("ID_user") idUser: String?,
@@ -72,6 +98,13 @@ suspend fun retrieve(): List<Post>
         @Field("start") start: String?,
         @Field("limit") limit: String?
     ): List<Post>
+
+    @FormUrlEncoded
+    @POST("index.php")
+    fun deleteData(
+        @Field("action") action: String?,
+        @Field("postId") postId: String?
+    ): Call<ResponseModel?>?
 }
 
 object SwapBookApi {

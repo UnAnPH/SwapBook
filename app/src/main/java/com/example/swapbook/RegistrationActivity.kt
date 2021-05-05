@@ -30,7 +30,7 @@ class RegistrationActivity : AppCompatActivity() {
 
         btnSignUp.setOnClickListener {
             val userName = etName.text.toString()
-            val email = etEmail.text.toString()
+            val email = etEmailReg.text.toString()
             val password = etPassword.text.toString()
             val confirmPassword = etConfirmPassword.text.toString()
 
@@ -84,7 +84,7 @@ class RegistrationActivity : AppCompatActivity() {
                         if (it.isSuccessful) {
 //                            open home activity
                             etName.setText("")
-                            etEmail.setText("")
+                            etEmailReg.setText("")
                             etPassword.setText("")
                             etConfirmPassword.setText("")
                             val intent = Intent(

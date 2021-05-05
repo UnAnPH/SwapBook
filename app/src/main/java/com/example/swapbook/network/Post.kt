@@ -10,11 +10,13 @@ import java.util.*
 data class Post(
 
         val ID_post: String,
+        val ID_book: String,
         val publishing_date: String,
 //      val closing_date: String,
         val description: String,
         @Json(name = "img_src") val imgSrcUrl: String,
         val city: String,
+        val province: String,
         var price: String,
         val state: Int,
 

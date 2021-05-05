@@ -8,9 +8,11 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
+import com.example.swapbook.helpers.Utils
 import com.example.swapbook.home.HomeFragment
 import com.example.swapbook.network.ResponseModel
 import com.example.swapbook.network.SwapBookApi
+import com.example.swapbook.network.SwapBookApiService
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -152,12 +154,16 @@ class InsertionActivity : AppCompatActivity() {
         val city = editTextCity.text.toString()
         val province = editTextProvince.text.toString()
         val price = editTextPrice.text.toString()
-        val imgUrl = postImage.contentDescription.toString()
+
+        var imgUrl: String = ""
+        if(postImage.contentDescription != null) {
+            imgUrl = postImage.contentDescription!!.toString()
+        }
 
 
 //        firebaseUser?.let { Log.i("msgins", it.uid) }
-
-        val insertData: Call<ResponseModel?>? = SwapBookApi.retrofitService.insertData(
+        val api: SwapBookApiService = Utils.client!!.create(SwapBookApiService::class.java)
+        val insertData: Call<ResponseModel?>? = api.insertData(
             "INSERT", firebaseUser!!.uid, imgUrl,  bookTitle,
             authorName,
             genre,
@@ -196,8 +202,11 @@ class InsertionActivity : AppCompatActivity() {
             }
         })
 
-
-
-
+        val intent = Intent(
+            this@InsertionActivity,
+            MainActivity::class.java
+        )
+        startActivity(intent)
+        finish()
     }
 }

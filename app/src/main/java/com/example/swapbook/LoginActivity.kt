@@ -32,7 +32,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         btnLogin.setOnClickListener {
-            val email = etEmail.text.toString()
+            val email = etEmailLog.text.toString()
             val password = etPassword.text.toString()
 
             if (TextUtils.isEmpty(email) && TextUtils.isEmpty(password)) {
@@ -45,7 +45,7 @@ class LoginActivity : AppCompatActivity() {
                 auth!!.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this) {
                         if (it.isSuccessful) {
-                            etEmail.setText("")
+                            etEmailLog.setText("")
                             etPassword.setText("")
                             val intent = Intent(
                                 this@LoginActivity,

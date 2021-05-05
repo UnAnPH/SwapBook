@@ -24,13 +24,13 @@
 
 
     <EditText
-        android:id="@+id/etEmail"
+        android:id="@+id/etEmailLog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:fontFamily="@font/gilroy_light"
         android:layout_marginTop="5dp"
-        android:inputType="textEmailAddress"
+        android:inputType="text"
         android:layout_marginEnd="15dp"
         android:background="@color/colorTextBackground"
         android:hint="@string/enter_email"
